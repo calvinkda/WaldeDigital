@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+{% load static %}
+création de compte
+{% endblock title %}
+
+{% block content %}
+
+<section class="section-border border-primary">
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+      <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
+        {% if success == True %}
+                    <div class="text-danger">
+                        <div class="header">
+                            Message important
+                        </div>
+                        <p> {{message}} </p>
+                    </div>
+                {% elif error == True %}
+                    <div class="text-danger">
+                        <div class="header">
+                            Une error est survenue
+                        </div>
+                        <p> {{message}} </p>
+                    </div>
+                {% endif %}
+        <!-- Heading -->
+        <h1 class="mb-0 font-weight-bold text-center">
+          Création de compte
+        </h1>
+
+        <!-- Text -->
+        <p class="mb-6 text-center text-muted">
+          Simplify your workflow in minutes.
+        </p>
+
+        <!-- Form -->
+        <form class="mb-6" method="POST">
+            {% csrf_token %}
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">
+              Adresse Email 
+            </label>
+            <input type="email" class="form-control" id="email" name="username" placeholder="name@address.com">
+          </div>
+
+          <!-- Password -->
+          <div class="form-group mb-5">
+            <label for="password">
+              Mot de passe
+            </label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe">
+          </div>
+          <div class="form-group mb-5">
+            <label for="password">
+              confirmer votre mot de passe
+            </label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe">
+          </div>
+          <div class="form-group mb-5">
+            <label for="password">
+              votre numéro de telephone
+            </label>
+            <input type="tel" class="form-control" id="password" name="telephone" placeholder="Entrer votre numéro de telephone">
+          </div>
+
+          <!-- Submit -->
+          <button class="btn btn-block btn-primary" type="submit">
+            Creer un compte
+          </button>
+
+        </form>
+
+        <!-- Text -->
+        <!-- Text -->
+        <p class="mb-0 font-size-sm text-center text-muted">
+            Vous avez un compte ?  <a href="{% url 'accounts:login' %}">Connecter vous</a>.
+          </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+{% endblock content %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+{% load static %}
+Connexion
+{% endblock title %}
+
+{% block content %}
+
+<section class="section-border border-primary">
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+      <div class="col-12 col-md-5 col-lg-4 py-8 py-md-11">
+        {% if success == True %}
+                <div class="text-danger">
+                    <div class="header">
+                        Message important
+                    </div>
+                    <p> {{message}} </p>
+                </div>
+                {% elif error == True %}
+                    <div class="text-danger">
+                        <div class="header">
+                            Une erreure est survenue
+                        </div>
+                        <p> {{message}} </p>
+                    </div>
+                {% endif %}
+        <!-- Heading -->
+        <h1 class="mb-0 font-weight-bold text-center">
+          Connexion
+        </h1>
+
+        <!-- Text -->
+        <p class="mb-6 text-center text-muted">
+          gerer votre waldé partout.
+        </p>
+
+        <!-- Form -->
+        <form class="mb-6" method="POST">
+          {% csrf_token %}
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">
+              Adresse Email
+            </label>
+            <input type="email" class="form-control" id="email" name="username" placeholder="adresse@address.com">
+          </div>
+
+          <!-- Password -->
+          <div class="form-group mb-5">
+            <label for="password">
+              Mot de passe
+            </label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
+          </div>
+
+          <!-- Submit -->
+          <button class="btn btn-block btn-primary" type="submit">
+            se connecter
+          </button>
+
+        </form>
+
+        <!-- Text -->
+        <p class="mb-0 font-size-sm text-center text-muted">
+          Vous n'avez de compte ?  <a href="{% url 'accounts:registration' %}">Inscrivez vous</a>.
+        </p>
+
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</section>
+{% endblock content %}
